@@ -34,7 +34,29 @@ def connect_db_get_query_result(query):
     return results
 
 
+def display_query_result(query_result):
+    """prints reports generated from query"""
+    print (query_result['title'])
+    for result in query_result['results']:
+        print ('\t' + str(result[0]) + ' ---> ' + str(result[1]) + ' views')
+
+
+def display_request_error_result(query_result):
+    """displays % of requests lead to errors"""
+    print (query_result['title'])
+    for result in query_result['results']:
+        print ('\t' + str(result[0]) + ' ---> ' + str(result[1]) + ' %')
+
+
 #main starts
 if __name__ == "__main__":
     print("Fetching the data from the Database...")
+    # stores query result
+    first_query_dict['results'] = connect_db_get_query_result(first_query)
+    second_query_dict['results'] = connect_db_get_query_result(second_query)
+    third_query_dict['results'] = connect_db_get_query_result(third_query)
 
+    # print formatted output
+    display_query_result(first_query_dict)
+    display_query_result(second_query_dict)
+    display_request_error_result(third_query_dict)
