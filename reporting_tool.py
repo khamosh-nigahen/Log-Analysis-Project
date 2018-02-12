@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import psycopg2
+import os
 
 # Database Name
 DB_NAME = "news"
@@ -61,6 +62,9 @@ def display_request_error_result(query_result):
 #main starts
 if __name__ == "__main__":
     print("Fetching the data from the Database...")
+    if os.path.isfile(FILENAME):
+        os.remove(FILENAME)
+
     # stores query result
     first_query_dict['results'] = connect_db_get_query_result(first_query)
     second_query_dict['results'] = connect_db_get_query_result(second_query)
