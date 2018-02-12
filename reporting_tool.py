@@ -6,23 +6,26 @@ import os
 # Database Name
 DB_NAME = "news"
 
-# Filename 
+# Filename
 FILENAME = "log_analysis.txt"
 
-# queries 
+# queries
 first_query = "select title,views from view_article limit 3"
 second_query = "select * from view_author"
 third_query = "select * from view_error_log where percent_error > 1"
 
 # to store results
 first_query_dict = dict()
-first_query_dict['title'] = "\n1. The 3 most popular articles of all time are:\n"
+first_query_dict['title'] = """\n1. The 3 most popular articles \
+of all time are:\n"""
 
 second_query_dict = dict()
-second_query_dict['title'] = "\n2. The most popular article authors of all time are:\n"
+second_query_dict['title'] = """\n2. The most popular article \
+authors of all time are:\n"""
 
 third_query_dict = dict()
-third_query_dict['title'] = "\n3. Days with more than 1% of request that lead to an error:\n"
+third_query_dict['title'] = """"\n3. Days with more than 1% of \
+request that lead to an error:\n"""
 
 
 def connect_db_get_query_result(query):
@@ -38,10 +41,10 @@ def connect_db_get_query_result(query):
 def display_query_result(query_result):
     """prints reports generated from query"""
     print (query_result['title'])
-    f = open(FILENAME,'a')
+    f = open(FILENAME, 'a')
     f.write(query_result['title'])
     for result in query_result['results']:
-        output = ('\t' + str(result[0]) + ' ---> ' + str(result[1]) + ' views' + '\n')
+        output = ('\t'+str(result[0])+' ---> '+str(result[1])+' views'+'\n')
         f.write(output)
         print (output, end='')
     f.close()
@@ -50,16 +53,16 @@ def display_query_result(query_result):
 def display_request_error_result(query_result):
     """displays % of requests lead to errors"""
     print (query_result['title'])
-    f = open(FILENAME,'a')
+    f = open(FILENAME, 'a')
     f.write(query_result['title'])
     for result in query_result['results']:
-        output = ('\t' + str(result[0]) + ' ---> ' + str(result[1]) + ' %' + '\n')
+        output = ('\t'+str(result[0])+' ---> '+str(result[1])+' %'+'\n')
         f.write(output)
         print (output, end='')
     f.close()
 
 
-#main starts
+# main starts
 if __name__ == "__main__":
     print("Fetching the data from the Database...")
     if os.path.isfile(FILENAME):
