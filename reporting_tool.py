@@ -37,15 +37,25 @@ def connect_db_get_query_result(query):
 def display_query_result(query_result):
     """prints reports generated from query"""
     print (query_result['title'])
+    f = open(FILENAME,'a')
+    f.write(query_result['title'])
     for result in query_result['results']:
-        print ('\t' + str(result[0]) + ' ---> ' + str(result[1]) + ' views')
+        output = ('\t' + str(result[0]) + ' ---> ' + str(result[1]) + ' views' + '\n')
+        f.write(output)
+        print (output, end='')
+    f.close()
 
 
 def display_request_error_result(query_result):
     """displays % of requests lead to errors"""
     print (query_result['title'])
+    f = open(FILENAME,'a')
+    f.write(query_result['title'])
     for result in query_result['results']:
-        print ('\t' + str(result[0]) + ' ---> ' + str(result[1]) + ' %')
+        output = ('\t' + str(result[0]) + ' ---> ' + str(result[1]) + ' %' + '\n')
+        f.write(output)
+        print (output, end='')
+    f.close()
 
 
 #main starts
