@@ -4,6 +4,12 @@
 
 This is the third project for the Udacity Full Stack Nanodegree. In this project, a PostgreSQL database is explored by complex SQL queries to get conclusions. Its a reporting tool for a newpaper site to discover what kind of articles the site's readers like and prints out reports (in plain text) based on the data in the database.
 
+We need to answer the following questions by writing queries for the database:
+
+1. What are the most popular three articles of all time?
+2. Who are the most popular article authors of all time?
+3. On which days did more than 1% of requests lead to errors?
+
 ## PreRequisites:
 
 1. [Python3](https://www.python.org/)
