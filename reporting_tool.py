@@ -10,9 +10,7 @@ FILENAME = "log_analysis.txt"
 
 # queries 
 first_query = "select title,views from view_article limit 3"
-
 second_query = "select * from view_author"
-
 third_query = "select * from view_error_log where percent_error > 1"
 
 # to store results
@@ -24,6 +22,16 @@ second_query_dict['title'] = "\n2. The most popular article authors of all time 
 
 third_query_dict = dict()
 third_query_dict['title'] = "\n3. Days with more than 1% of request that lead to an error:\n"
+
+
+def connect_db_get_query_result(query):
+    """connects to DB and gets query results"""
+    db = psycopg2.connect(database=DB_NAME)
+    c = db.cursor()
+    c.execute(query)
+    results = c.fetchall()
+    db.close()
+    return results
 
 
 #main starts
